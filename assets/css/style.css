@@ -32,10 +32,10 @@ a:hover{ text-decoration:underline; }
   flex-direction:column;
 }
 
-/* 🔴 NINCS STICKY / FIX HEADER */
+/* 🔴 NEM FIX FEJLÉC */
 .topbar{
-  position: relative;
-  background: rgba(20,20,20,0.78);
+  position:relative;
+  background:rgba(20,20,20,0.78);
   border-bottom:1px solid var(--border);
 }
 
@@ -50,19 +50,11 @@ a:hover{ text-decoration:underline; }
   flex-wrap:wrap;
 }
 
-.brand{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-
 .brand .title{
   font-weight:800;
-  letter-spacing:0.2px;
   color:var(--accent);
   font-size:18px;
 }
-
 .brand .subtitle{
   font-size:12px;
   color:var(--muted);
@@ -71,34 +63,45 @@ a:hover{ text-decoration:underline; }
 .btnrow{
   display:flex;
   gap:10px;
-  flex-wrap:wrap;
 }
 
 .btn{
   appearance:none;
   border:1px solid var(--border);
-  background: rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.08);
   color:var(--text);
   padding:10px 12px;
   border-radius:12px;
   cursor:pointer;
   font-weight:800;
   font-size:14px;
-}
-
-.btn:hover{ background: rgba(255,255,255,0.13); }
-.btn:active{ transform: translateY(1px); }
-
-.btn-blue{
-  background: var(--blue);
-  color:white;
-  border-color: rgba(255,255,255,0.08);
+  white-space:nowrap;
 }
 
 .btn-accent{
-  background: var(--accent);
+  background:var(--accent);
   color:#1b1b1b;
-  border-color: transparent;
+  border-color:transparent;
+}
+
+.btn-blue{
+  background:var(--blue);
+  color:#fff;
+}
+
+/* 🔹 Mérés – kisebb, akció jellegű */
+.btn-measure{
+  padding:8px 10px;
+  font-size:13px;
+  font-weight:700;
+  background:rgba(255,255,255,0.12);
+}
+
+/* ✅ mérés UTÁN aktív állapot */
+.btn-measure.active{
+  background:rgba(59,209,111,0.25);
+  border-color:rgba(59,209,111,0.6);
+  color:#eafff0;
 }
 
 .container{
@@ -110,11 +113,10 @@ a:hover{ text-decoration:underline; }
 }
 
 .card{
-  background: var(--panel);
+  background:var(--panel);
   border:1px solid var(--border);
   border-radius:16px;
   padding:16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
 }
 
 .h1{
@@ -124,36 +126,45 @@ a:hover{ text-decoration:underline; }
 
 .small{
   font-size:13px;
-  color: var(--muted);
+  color:var(--muted);
 }
 
 .grid{
   display:grid;
-  grid-template-columns: 1fr;
+  grid-template-columns:1fr;
   gap:14px;
 }
 
 .poi{
-  background: var(--panel2);
+  background:var(--panel2);
   border:1px solid var(--border);
   border-radius:14px;
   padding:14px;
 }
 
-.inline-image,
-.hero-image{
+.poi-title{
+  font-size:18px;
+  font-weight:900;
+}
+
+.coords{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.poibtns{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:nowrap;
+  align-items:center;
+}
+
+.inline-image{
   width:100%;
   border-radius:14px;
   margin-top:12px;
   border:1px solid rgba(255,255,255,0.10);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.30);
-}
-
-.footer-nav{
-  margin-top:18px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
 }
 
 body.day01{
