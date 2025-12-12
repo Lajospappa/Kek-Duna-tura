@@ -7,14 +7,16 @@
 
 <style>
 /* ===== RESET ===== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /* ===== BODY + BACKGROUND ===== */
 body {
   font-family: "Georgia", serif;
-  background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
-    url("day01/images/Durnstein.jpg") center/cover no-repeat fixed;
+  background: url("day01/images/Durnstein.jpg") center/cover no-repeat fixed;
   color: #f3f3f3;
 }
 
@@ -49,6 +51,7 @@ body {
   opacity: 0.8;
 }
 
+/* ===== BUTTONS (TOP) ===== */
 .btnrow .btn {
   text-decoration: none;
   padding: 10px 16px;
@@ -149,7 +152,7 @@ body {
   border: 1px solid rgba(255,179,0,0.4);
 }
 
-/* Dupla mérés – narancs/piros */
+/* Dupla mérés – narancs */
 .badge.double {
   background: rgba(255,90,0,0.15);
   color: #ff6a00;
@@ -162,10 +165,15 @@ body {
   border-radius: 50%;
 }
 
-.dot.gps { background: #ffb300; }
-.dot.double { background: #ff6a00; }
+.dot.gps {
+  background: #ffb300;
+}
 
-/* ===== BUTTONS ===== */
+.dot.double {
+  background: #ff6a00;
+}
+
+/* ===== POI BUTTONS ===== */
 .poibtns {
   margin-top: 18px;
 }
@@ -193,19 +201,17 @@ body {
     <div class="card">
 
       <div class="h1">Útiterv</div>
+
       <div class="p">
         Itt a napok belépő oldala van. Minden napon belül van lista nézet,
         és minden helyszínnek külön oldala.
       </div>
 
-      <div class="notice">
-        Képek helye: <b>day01/images</b><br>
-        Használt fájlok: Durnstein.jpg, fertoto.jpg, Kismarton.jpg,
-        KremsanderDonau.jpg, Leithaprodersdorf.jpg, WachauCampingRossatz.jpg
-      </div>
+     
 
       <div class="grid">
         <div class="poi">
+
           <div class="poi-head">
             <div>
               <div class="poi-title">DAY01 – Fertő tó és Wachau</div>
@@ -225,6 +231,7 @@ body {
           <div class="poibtns">
             <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
           </div>
+
         </div>
       </div>
 
