@@ -1,13 +1,181 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kék Duna túra</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kék Duna túra</title>
+
+<style>
+/* ===== RESET ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== BODY + BACKGROUND ===== */
+body {
+  font-family: "Georgia", serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+    url("day01/images/Durnstein.jpg") center/cover no-repeat fixed;
+  color: #f3f3f3;
+}
+
+/* ===== LAYOUT ===== */
+.page {
+  min-height: 100vh;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background: rgba(10,10,10,0.9);
+  border-bottom: 1px solid #333;
+}
+
+.topbar .inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand .title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffb300;
+}
+
+.brand .subtitle {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.btnrow .btn {
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-accent {
+  background: #ffb300;
+  color: #111;
+}
+
+.btn-accent:hover {
+  background: #ffca4d;
+}
+
+/* ===== CONTENT ===== */
+.container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: rgba(0,0,0,0.75);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+.h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.notice {
+  margin-top: 14px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* ===== GRID ===== */
+.grid {
+  margin-top: 26px;
+}
+
+.poi {
+  background: linear-gradient(180deg, #111, #050505);
+  border-radius: 16px;
+  padding: 22px;
+  border: 1px solid #222;
+}
+
+.poi-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.poi-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.coords {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ===== BADGES ===== */
+.badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* GPS mérés – sárga */
+.badge.gps {
+  background: rgba(255,179,0,0.15);
+  color: #ffb300;
+  border: 1px solid rgba(255,179,0,0.4);
+}
+
+/* Dupla mérés – narancs/piros */
+.badge.double {
+  background: rgba(255,90,0,0.15);
+  color: #ff6a00;
+  border: 1px solid rgba(255,90,0,0.45);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot.gps { background: #ffb300; }
+.dot.double { background: #ff6a00; }
+
+/* ===== BUTTONS ===== */
+.poibtns {
+  margin-top: 18px;
+}
+</style>
 </head>
+
 <body>
 <div class="page">
+
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="inner">
       <div class="brand">
@@ -20,29 +188,40 @@
     </div>
   </div>
 
+  <!-- CONTENT -->
   <div class="container">
     <div class="card">
+
       <div class="h1">Útiterv</div>
-      <div class="p">Itt a napok belépő oldala van. Minden napon belül van lista nézet, és minden helyszínnek külön oldala.</div>
-      <div class="notice">
-        Képek helye: <b>day01/images</b><br>
-        A projekt ezekkel a fájlnevekkel számol: Durnstein.jpg, fertoto.jpg, Kismarton.jpg, KremsanderDonau.jpg, Leithaprodersdorf.jpg, WachauCampingRossatz.jpg
+      <div class="p">
+        Itt a napok belépő oldala van. Minden napon belül van lista nézet,
+        és minden helyszínnek külön oldala.
       </div>
 
-      <div style="height:12px"></div>
+      <div class="notice">
+        Képek helye: <b>day01/images</b><br>
+        Használt fájlok: Durnstein.jpg, fertoto.jpg, Kismarton.jpg,
+        KremsanderDonau.jpg, Leithaprodersdorf.jpg, WachauCampingRossatz.jpg
+      </div>
 
       <div class="grid">
         <div class="poi">
           <div class="poi-head">
             <div>
-              <div class="poi-title">DAY01 Fertő tó és Wachau</div>
+              <div class="poi-title">DAY01 – Fertő tó és Wachau</div>
               <div class="coords">6 pont, kemping Rossatz</div>
             </div>
+
             <div class="badges">
-              <span class="badge"><span class="dot warn"></span> GPS mérés</span>
-              <span class="badge"><span class="dot warn"></span> Dupla mérés jelzés</span>
+              <span class="badge gps">
+                <span class="dot gps"></span> GPS mérés
+              </span>
+              <span class="badge double">
+                <span class="dot double"></span> Dupla mérés jelzés
+              </span>
             </div>
           </div>
+
           <div class="poibtns">
             <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
           </div>
@@ -51,6 +230,7 @@
 
     </div>
   </div>
+
 </div>
 </body>
 </html>
