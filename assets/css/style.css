@@ -32,7 +32,7 @@ a:hover{ text-decoration:underline; }
   flex-direction:column;
 }
 
-/* ===== FEJLÉC – NEM FIX ===== */
+/* ===== FEJLÉC (NEM FIX) ===== */
 .topbar{
   position:relative;
   background:rgba(20,20,20,0.78);
@@ -99,14 +99,13 @@ a:hover{ text-decoration:underline; }
   background:rgba(255,255,255,0.12);
 }
 
-/* Mérés aktív állapot */
 .btn-measure.active{
   background:rgba(59,209,111,0.25);
   border-color:rgba(59,209,111,0.6);
   color:#eafff0;
 }
 
-/* ===== LAYOUT ===== */
+/* ===== TARTALOM ===== */
 .container{
   max-width:980px;
   margin:0 auto;
@@ -138,7 +137,7 @@ a:hover{ text-decoration:underline; }
   gap:14px;
 }
 
-/* ===== POI ===== */
+/* ===== HELYSZÍN ===== */
 .poi{
   background:var(--panel2);
   border:1px solid var(--border);
@@ -173,7 +172,3 @@ a:hover{ text-decoration:underline; }
   border:1px solid rgba(255,255,255,0.10);
   box-shadow:0 10px 22px rgba(0,0,0,0.30);
 }
-
-/* ===== DAY01 HÁTTÉR – BIZTONSÁGOS ===== */
-/* A háttérképet a HTML adja meg inline style-ban,
-   így NINCS CSS-ben törhető relatív útvonal */
