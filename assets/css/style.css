@@ -24,8 +24,8 @@ a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 .page{ min-height:100%; display:flex; flex-direction:column; }
 .topbar{
-  position:sticky; top:0; z-index:50;
-  backdrop-filter: blur(6px);
+  position: relative;   /* vagy egyszerűen töröld a position sort */
+  z-index: 1;
   background: rgba(20,20,20,0.78);
   border-bottom:1px solid var(--border);
 }
