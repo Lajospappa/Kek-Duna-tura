@@ -51,15 +51,18 @@ body {
   opacity: 0.8;
 }
 
-/* ===== BUTTONS (TOP) ===== */
-.btnrow .btn {
+/* ===== BUTTONS – GLOBAL ===== */
+.btn {
+  display: inline-block;
   text-decoration: none;
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 18px;
   font-weight: bold;
   font-size: 14px;
+  transition: background 0.2s ease, transform 0.15s ease;
 }
 
+/* Sárga kiemelt gomb (DAY01 + Megnyitás) */
 .btn-accent {
   background: #ffb300;
   color: #111;
@@ -67,6 +70,7 @@ body {
 
 .btn-accent:hover {
   background: #ffca4d;
+  transform: translateY(-1px);
 }
 
 /* ===== CONTENT ===== */
@@ -91,12 +95,6 @@ body {
 .p {
   line-height: 1.6;
   opacity: 0.9;
-}
-
-.notice {
-  margin-top: 14px;
-  font-size: 14px;
-  opacity: 0.85;
 }
 
 /* ===== GRID ===== */
@@ -145,14 +143,14 @@ body {
   font-weight: bold;
 }
 
-/* GPS mérés – sárga */
+/* GPS mérés */
 .badge.gps {
   background: rgba(255,179,0,0.15);
   color: #ffb300;
   border: 1px solid rgba(255,179,0,0.4);
 }
 
-/* Dupla mérés – narancs */
+/* Dupla mérés */
 .badge.double {
   background: rgba(255,90,0,0.15);
   color: #ff6a00;
@@ -165,13 +163,8 @@ body {
   border-radius: 50%;
 }
 
-.dot.gps {
-  background: #ffb300;
-}
-
-.dot.double {
-  background: #ff6a00;
-}
+.dot.gps { background: #ffb300; }
+.dot.double { background: #ff6a00; }
 
 /* ===== POI BUTTONS ===== */
 .poibtns {
@@ -191,6 +184,7 @@ body {
         <div class="subtitle">Főoldal</div>
       </div>
       <div class="btnrow">
+        <!-- EZ MARAD -->
         <a class="btn btn-accent" href="day01/index.html">DAY01 lista</a>
       </div>
     </div>
@@ -206,8 +200,6 @@ body {
         Itt a napok belépő oldala van. Minden napon belül van lista nézet,
         és minden helyszínnek külön oldala.
       </div>
-
-     
 
       <div class="grid">
         <div class="poi">
@@ -228,6 +220,7 @@ body {
             </div>
           </div>
 
+          <!-- MOST MÁR UGYANÚGY NÉZ KI -->
           <div class="poibtns">
             <a class="btn btn-accent" href="day01/index.html">Megnyitás</a>
           </div>
