@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,499 +8,283 @@
 
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <!-- DAY02 háttér -->
   <style>
     body.day02 {
       background: url("images/Traunsee.jpg") center / cover no-repeat fixed;
     }
 
-    /* szövegdoboz háttér picit sötétebb */
-    .card{
-      background: rgba(0,0,0,0.72);
+    .card {
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .poi {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .poi-desc {
+      margin-top: 6px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 4px solid #ffb300;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #f0f0f0;
+    }
+
+    .poi img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
     }
   </style>
 </head>
 
 <body class="day02">
-<div class="page">
+  <div class="page">
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="inner">
-      <div class="brand">
-        <div class="title">Kék Duna túra</div>
-        <div class="subtitle">DAY02 lista nézet</div>
-      </div>
-      <div class="btnrow">
-        <a class="btn" href="../index.html">🏠 Főoldal</a>
-        <button class="btn btn-accent" id="btnNearest">📌 Legközelebbi pont</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTENT -->
-  <div class="container">
-
-    <div class="card">
-      <div class="h1">DAY02 – Wachau → Salzkammergut → Saalachtal</div>
-      <div class="small">
-        A mérés oldalnyitáskor indul, majd 5 mp múlva frissül.
-        Az oldal automatikusan a következő logikus pontra ugrik.
-      </div>
-      <div class="notice" id="gpsNotice" style="display:none">
-        A böngésző nem tudott helyet kérni.
-        Engedélyezd a helymeghatározást.
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="inner">
+        <div class="brand">
+          <div class="title">Kék Duna túra</div>
+          <div class="subtitle">DAY02 lista nézet</div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="../index.html">🏠 Főoldal</a>
+        </div>
       </div>
     </div>
 
-    <div style="height:14px"></div>
+    <div class="container">
 
-    <div class="grid" id="poiList">
+      <div class="card">
+        <div class="h1">DAY02 – Wachau → Salzkammergut → Saalachtal</div>
+        <div class="small">
+          A Duna-völgyéből az alpesi tavak és völgyek világába vezető, látványban gazdag nap.
+        </div>
+      </div>
 
-      <!-- P1 -->
-      <div class="poi" id="p1">
-        <div class="poi-head">
+      <div style="height:14px"></div>
+
+      <div class="grid">
+
+        <!-- P1 -->
+        <div class="poi">
           <div>
             <div class="poi-title">1. Rossatz–Arnsdorf, Dunapart</div>
             <div class="coords">48.390832, 15.516668</div>
+            <div class="poi-desc">
+              A Wachau egyik legautentikusabb dunaparti szakasza, barackültetvényekkel és
+              teraszos szőlőkkel. Reggelente gyakran ül meg a pára a folyó felett.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p1.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=48.390832,15.516668"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p1"></span><span data-badgetext="p1">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p1">távolság: —</span></span>
-          </div>
+          <img src="images/RossatzArnsdorf.jpg" alt="Rossatz–Arnsdorf">
         </div>
 
-        <div class="p">
-          Wachau autentikus dunaparti indulópontja,
-          barackültetvényekkel és történelmi teraszokkal.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p1.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/MwcjqNfXFLw3WBjA" target="_blank">🧭 Navigáció</a>
-        </div>
-
-        <img class="inline-image" src="images/RossatzArnsdorf.jpg" alt="Rossatz-Arnsdorf">
-      </div>
-
-      <!-- P2 -->
-      <div class="poi" id="p2">
-        <div class="poi-head">
+        <!-- P2 -->
+        <div class="poi">
           <div>
             <div class="poi-title">2. Melk apátság</div>
             <div class="coords">48.228300, 15.332600</div>
+            <div class="poi-desc">
+              Monumentális barokk bencés apátság a Duna felett, Ausztria egyik legismertebb
+              épülete és a Wachau keleti kapuja.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p2.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=48.228300,15.332600"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p2"></span><span data-badgetext="p2">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p2">távolság: —</span></span>
-          </div>
+          <img src="images/Melk.jpg" alt="Melk apátság">
         </div>
 
-        <div class="p">
-          Monumentális barokk bencés apátság a Duna felett,
-          Ausztria egyik legismertebb épülete.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p2.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/4dVPr1z7G9rZK9Ww9" target="_blank">🧭 Navigáció</a>
-        </div>
-
-        <img class="inline-image" src="images/Melk.jpg" alt="Melk apátság">
-      </div>
-
-      <!-- P3 -->
-      <div class="poi" id="p3">
-        <div class="poi-head">
+        <!-- P3 -->
+        <div class="poi">
           <div>
             <div class="poi-title">3. Grein</div>
             <div class="coords">48.226894, 14.852718</div>
+            <div class="poi-desc">
+              Hangulatos dunai kisváros kastéllyal és Ausztria legrégebbi,
+              ma is működő színházával.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p3.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=48.226894,14.852718"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p3"></span><span data-badgetext="p3">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p3">távolság: —</span></span>
-          </div>
+          <img src="images/Grein.jpg" alt="Grein">
         </div>
 
-        <div class="p">
-          Hangulatos dunai kisváros,
-          kastéllyal és Ausztria legrégebbi színházával.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p3.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/QLxBZA7Vg7stKeBCA" target="_blank">🧭 Navigáció</a>
-        </div>
-
-        <img class="inline-image" src="images/Grein.jpg" alt="Grein">
-      </div>
-
-      <!-- P4 -->
-      <div class="poi" id="p4">
-        <div class="poi-head">
+        <!-- P4 -->
+        <div class="poi">
           <div>
             <div class="poi-title">4. Waidhofen an der Ybbs – óváros</div>
             <div class="coords">47.960634, 14.774023</div>
+            <div class="poi-desc">
+              Középkori városmag, markáns városfalakkal és vasipari múlttal,
+              az Alpok előterének egyik történelmi központja.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p4.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.960634,14.774023"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p4"></span><span data-badgetext="p4">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p4">távolság: —</span></span>
-          </div>
+          <img src="images/WaidhofenanderYbbs.jpg" alt="Waidhofen">
         </div>
 
-        <div class="p">
-          Középkori városmag,
-          vasipari múlt és markáns városfalak.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p4.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/WaidhofenanderYbbs.jpg" alt="Waidhofen">
-      </div>
-
-      <!-- P5 -->
-      <div class="poi" id="p5">
-        <div class="poi-head">
+        <!-- P5 -->
+        <div class="poi">
           <div>
             <div class="poi-title">5. Traunsee</div>
             <div class="coords">47.918163, 13.802318</div>
+            <div class="poi-desc">
+              Ausztria legmélyebb tava, meredeken kiemelkedő hegyfalakkal
+              és fjordszerű látvánnyal.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p5.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.918163,13.802318"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p5"></span><span data-badgetext="p5">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p5">távolság: —</span></span>
-          </div>
+          <img src="images/Traunsee.jpg" alt="Traunsee">
         </div>
 
-        <div class="p">
-          Ausztria legmélyebb tava,
-          meredek hegyekkel és fjordszerű látvánnyal.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p5.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/Traunsee.jpg" alt="Traunsee">
-      </div>
-
-      <!-- P6 -->
-      <div class="poi" id="p6">
-        <div class="poi-head">
+        <!-- P6 -->
+        <div class="poi">
           <div>
-            <div class="poi-title">6. Ort vízikastély</div>
+            <div class="poi-title">6. Ort vízikastély – Schloss Ort</div>
             <div class="coords">47.910645, 13.790349</div>
+            <div class="poi-desc">
+              Ikonikus kastély a Traunsee egyik apró szigetén,
+              fahíddal összekötve a szárazfölddel.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p6.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.910645,13.790349"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p6"></span><span data-badgetext="p6">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p6">távolság: —</span></span>
-          </div>
+          <img src="images/Ortvizikastely.jpg" alt="Schloss Ort">
         </div>
 
-        <div class="p">
-          Szigetre épült reneszánsz kastély,
-          ikonikus fotópont Gmundennél.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p6.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/Ortvizikastely.jpg" alt="Schloss Ort">
-      </div>
-
-      <!-- P7 -->
-      <div class="poi" id="p7">
-        <div class="poi-head">
+        <!-- P7 -->
+        <div class="poi">
           <div>
             <div class="poi-title">7. Bad Ischl – Kaiservilla</div>
             <div class="coords">47.713941, 13.620722</div>
+            <div class="poi-desc">
+              A Habsburg Monarchia egykori nyári fővárosa,
+              Ferenc József császár kedvelt rezidenciája.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p7.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.713941,13.620722"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p7"></span><span data-badgetext="p7">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p7">távolság: —</span></span>
-          </div>
+          <img src="images/BadIschl.jpg" alt="Bad Ischl">
         </div>
 
-        <div class="p">
-          A Habsburg Monarchia nyári fővárosa,
-          Ferenc József kedvelt rezidenciája.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p7.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/BadIschl.jpg" alt="Bad Ischl">
-      </div>
-
-      <!-- P8 -->
-      <div class="poi" id="p8">
-        <div class="poi-head">
+        <!-- P8 -->
+        <div class="poi">
           <div>
             <div class="poi-title">8. Szent Wolfgang-templom</div>
             <div class="coords">47.738186, 13.447891</div>
+            <div class="poi-desc">
+              Gótikus zarándoktemplom Michael Pacher szárnyas oltárával,
+              a Wolfgangsee partján.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p8.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.738186,13.447891"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p8"></span><span data-badgetext="p8">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p8">távolság: —</span></span>
-          </div>
+          <img src="images/SzentWolfgang.jpg" alt="Szent Wolfgang">
         </div>
 
-        <div class="p">
-          Gótikus zarándoktemplom Michael Pacher oltárával
-          a Wolfgangsee partján.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p8.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/SzentWolfgang.jpg" alt="Szent Wolfgang">
-      </div>
-
-      <!-- P9 -->
-      <div class="poi" id="p9">
-        <div class="poi-head">
+        <!-- P9 -->
+        <div class="poi">
           <div>
             <div class="poi-title">9. Fuschlsee</div>
             <div class="coords">47.792000, 13.298800</div>
+            <div class="poi-desc">
+              Smaragdzöld vizű alpesi tó, Salzburg tartomány egyik
+              legtisztább és legnyugodtabb tava.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p9.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.792000,13.298800"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p9"></span><span data-badgetext="p9">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p9">távolság: —</span></span>
-          </div>
+          <img src="images/Fuschlsee.jpg" alt="Fuschlsee">
         </div>
 
-        <div class="p">
-          Smaragdzöld vizű alpesi tó,
-          Salzburg tartomány egyik rejtett kincse.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p9.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/Fuschlsee.jpg" alt="Fuschlsee">
-      </div>
-
-      <!-- P10 -->
-      <div class="poi" id="p10">
-        <div class="poi-head">
+        <!-- P10 -->
+        <div class="poi">
           <div>
             <div class="poi-title">10. Wiestalstausee</div>
             <div class="coords">47.676100, 13.074300</div>
+            <div class="poi-desc">
+              Erdőkkel körülvett víztározó Salzburg közelében,
+              tájvédelmi terület és csendes alpesi megálló.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p10.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.676100,13.074300"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p10"></span><span data-badgetext="p10">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p10">távolság: —</span></span>
-          </div>
+          <img src="images/Wiestalstausee.jpg" alt="Wiestalstausee">
         </div>
 
-        <div class="p">
-          Tájvédelmi víztározó Salzburg közelében,
-          erdőkkel és hegyekkel körülvéve.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p10.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/Wiestalstausee.jpg" alt="Wiestalstausee">
-      </div>
-
-      <!-- P11 -->
-      <div class="poi" id="p11">
-        <div class="poi-head">
+        <!-- P11 -->
+        <div class="poi">
           <div>
-            <div class="poi-title">11. Unken – Saalachtal</div>
-            <div class="coords">47.676100, 13.074300</div>
-          </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p11"></span><span data-badgetext="p11">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p11">távolság: —</span></span>
-          </div>
-        </div>
-
-        <div class="p">
-          Berchtesgadeni Alpok kapuja,
-          szorosokkal és vad hegyvidékkel.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p11.html">Részletek</a>
-        </div>
-
-        <img class="inline-image" src="images/Saalachtal.png" alt="Saalachtal">
-      </div>
-
-      <!-- P12 -->
-      <div class="poi" id="p12">
-        <div class="poi-head">
-          <div>
-            <div class="poi-title">12. Camping Mühlleiten – Lofer</div>
+            <div class="poi-title">11. Camping Mühlleiten – Lofer</div>
             <div class="coords">47.599781, 12.988963</div>
+            <div class="poi-desc">
+              Motorosbarát alpesi kemping a Saalachtalban,
+              csendes környezetben, hegyekkel körülvéve.
+            </div>
+            <div class="poibtns">
+              <a class="btn btn-accent" href="p11.html">Részletek</a>
+              <a class="btn btn-blue"
+                href="https://www.google.com/maps/dir/?api=1&destination=47.599781,12.988963"
+                target="_blank">🧭 Navigáció</a>
+            </div>
           </div>
-          <div class="badges">
-            <span class="badge"><span class="dot warn" data-dot="p12"></span><span data-badgetext="p12">mérés: várakozás</span></span>
-            <span class="badge"><span class="dot warn"></span><span data-dist="p12">távolság: —</span></span>
-          </div>
+          <img src="images/CampingMühlleiten.jpg" alt="Camping Mühlleiten">
         </div>
 
-        <div class="p">
-          Motorosbarát alpesi kemping,
-          tökéletes napzárás a Saalachtalban.
-        </div>
-
-        <div class="poibtns">
-          <a class="btn btn-accent" href="p12.html">Részletek</a>
-          <a class="btn btn-blue" href="https://maps.app.goo.gl/2GLs3rVT3cS5VFFo7" target="_blank">🧭 Navigáció</a>
-        </div>
-
-        <img class="inline-image" src="images/CampingMühlleiten.jpg" alt="Camping Mühlleiten">
       </div>
-
     </div>
   </div>
-</div>
-
-<script>
-const POIS = [
-  {id:"p1",lat:48.390832,lon:15.516668},
-  {id:"p2",lat:48.2283,lon:15.3326},
-  {id:"p3",lat:48.226894,lon:14.852718},
-  {id:"p4",lat:47.960634,lon:14.774023},
-  {id:"p5",lat:47.918163,lon:13.802318},
-  {id:"p6",lat:47.910645,lon:13.790349},
-  {id:"p7",lat:47.713941,lon:13.620722},
-  {id:"p8",lat:47.738186,lon:13.447891},
-  {id:"p9",lat:47.792,lon:13.2988},
-  {id:"p10",lat:47.6761,lon:13.0743},
-  {id:"p11",lat:47.6761,lon:13.0743},
-  {id:"p12",lat:47.599781,lon:12.988963}
-];
-
-let sample1 = null;
-let t2 = null;
-
-function haversineKm(lat1, lon1, lat2, lon2) {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a =
-    Math.sin(dLat/2)**2 +
-    Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
-
-function setBadge(id, txt){
-  const el = document.querySelector(`[data-badgetext="${id}"]`);
-  if(el) el.textContent = txt;
-}
-
-function setDist(id, km){
-  const el = document.querySelector(`[data-dist="${id}"]`);
-  if(el) el.textContent = `távolság: ${km.toFixed(2)} km`;
-}
-
-function computeDistances(pos){
-  const out = {};
-  POIS.forEach(p=>{
-    out[p.id] = haversineKm(pos.lat, pos.lon, p.lat, p.lon);
-  });
-  return out;
-}
-
-function scrollToPoi(id){
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
-}
-
-function pickTarget(d1, d2, moveKm){
-  if(moveKm < 0.03) {
-    let best = null;
-    for(const id in d2){
-      if(!best || d2[id] < best.km) best = {id, km:d2[id]};
-    }
-    return best ? best.id : null;
-  }
-
-  let best = null;
-  for(const id in d2){
-    const delta = (d1 && d1[id] != null) ? (d1[id] - d2[id]) : 0;
-    const score = delta;
-    if(!best) best = {id, score, km:d2[id]};
-    else {
-      if(score > best.score + 1e-9) best = {id, score, km:d2[id]};
-      else if(Math.abs(score - best.score) < 1e-9 && d2[id] < best.km) best = {id, score, km:d2[id]};
-    }
-  }
-  return best ? best.id : null;
-}
-
-function updateUI(distances){
-  for(const id in distances){
-    setDist(id, distances[id]);
-    setBadge(id, "mérve");
-  }
-}
-
-function getPosOnce(){
-  return new Promise((resolve, reject)=>{
-    if(!navigator.geolocation){
-      reject(new Error("Geolocation not supported"));
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      p => resolve({lat:p.coords.latitude, lon:p.coords.longitude}),
-      e => reject(e),
-      { enableHighAccuracy:true, maximumAge:0, timeout:12000 }
-    );
-  });
-}
-
-async function runMeasureCycle(scrollAfter=true){
-  if(t2) { clearTimeout(t2); t2 = null; }
-  document.getElementById("gpsNotice").style.display = "none";
-
-  try{
-    const posA = await getPosOnce();
-    const dA = computeDistances(posA);
-    updateUI(dA);
-    sample1 = {pos:posA, d:dA};
-
-    if(scrollAfter){
-      const nearestA = Object.keys(dA).reduce((best,id)=> !best || dA[id] < dA[best] ? id : best, null);
-      if(nearestA) scrollToPoi(nearestA);
-    }
-
-    t2 = setTimeout(async ()=>{
-      try{
-        const posB = await getPosOnce();
-        const dB = computeDistances(posB);
-        updateUI(dB);
-
-        const moveKm = haversineKm(sample1.pos.lat, sample1.pos.lon, posB.lat, posB.lon);
-        const target = pickTarget(sample1.d, dB, moveKm);
-        if(target) scrollToPoi(target);
-
-      } catch(err2){
-        document.getElementById("gpsNotice").style.display = "block";
-      }
-    }, 5000);
-
-  } catch(err){
-    document.getElementById("gpsNotice").style.display = "block";
-  }
-}
-
-runMeasureCycle(true);
-
-document.getElementById("btnNearest").addEventListener("click", ()=>{
-  runMeasureCycle(true);
-});
-</script>
 
 </body>
+
 </html>
