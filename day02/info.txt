@@ -1,0 +1,59 @@
+DAY02 célpontlista
+
+1. Rossatz–Arnsdorf, Dunapart
+Kép: RossatzArnsdorf.jpg
+Koordináta: 48.390832, 15.516668
+GMaps: https://maps.app.goo.gl/ETUnKq2VYQ353sXz7
+
+2. Melk apátság
+Kép: Melk.jpg
+Koordináta: 48.228300, 15.332600
+GMaps: https://maps.app.goo.gl/PUSnMxMeUEEzap8s6
+
+3. Grein
+Kép: Grein.jpg
+Koordináta: 48.226894, 14.852718
+GMaps: https://maps.app.goo.gl/QLxBZA7Vg7stKeBCA
+
+4. Waidhofen an der Ybbs
+Kép: WaidhofenanderYbbs.jpg
+Koordináta: 47.960634, 14.774023
+GMaps:
+https://www.google.com/maps/dir/?api=1&destination=47.960634,14.774023
+
+5. Traunsee
+Kép: Traunsee.jpg
+Koordináta: 47.918163, 13.802318
+GMaps:
+https://www.google.com/maps/dir/?api=1&destination=47.918163,13.802318
+
+6. Ort vízikastély
+Kép: Ortvizikastely.jpg
+Koordináta: 47.910645, 13.790349
+GMaps:
+https://www.google.com/maps/dir/?api=1&destination=47.910645,13.790349
+
+7. Bad Ischl – Kaiservilla
+Kép: BadIschl.jpg
+Koordináta: 47.713941, 13.620722
+GMaps: https://maps.app.goo.gl/T29yZ9qAG2Bt3Jm29
+
+8. Szent Wolfgang
+Kép: SzentWolfgang.jpg
+Koordináta: 47.738186, 13.447891
+GMaps: https://maps.app.goo.gl/fFbWorjYGg8E5LLJ8
+
+9. Fuschlsee
+Kép: Fuschlsee.jpg
+Koordináta: 47.792000, 13.298800
+GMaps: https://maps.app.goo.gl/5C1bRzVbsAz8swge7
+
+10. Wiestalstausee
+Kép: Wiestalstausee.jpg
+Koordináta: 47.676100, 13.074300
+GMaps: https://maps.app.goo.gl/qZqcp98VkQn6zsTq7
+
+11. Camping Mühlleiten – Lofer
+Kép: CampingMühlleiten.jpg
+Koordináta: 47.599781, 12.988963
+GMaps: https://maps.app.goo.gl/2GLs3rVT3cS5VFFo7
