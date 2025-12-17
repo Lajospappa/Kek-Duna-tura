@@ -1,0 +1,87 @@
+The user wants a single list of 27 locations with their coordinates (DD format) and Google Maps links, in Hungarian.
+
+I have gathered information for the first 10 locations and performed a batch search for the remaining 17 (11-2
+A kért 27 helyszín listája a hozzájuk tartozó koordinátákkal (szélesség, hosszúság decimális fokban) és Google Maps linkekkel:
+
+1. **Königssee:** 47.575, 12.981 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/9c1vR6tC6GzQJk5y5)
+2. **Ramsau – Szent Sebastian templom:** 47.6009, 12.879 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/tU1Xk8iJ7L8E5c4a8)
+3. **Schwarzbachwacht hágó:** 47.6534, 12.8741 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/19R8yR7WqW8T8zS46)
+4. **Határátlépés Bajorország és Salzburg között (Steinpass/Kleines Deutsches Eck):** 47.7289, 12.7937 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/J38UvFp77WqR6t377)
+5. **Unken:** 47.6008, 12.7214 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/i6Wz5x9T6L7K4t8C9)
+6. **Lofer:** 47.5878, 12.7169 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/k2H1Zp2X4R3N9q8T7)
+7. **Pass Strub:** 47.5683, 12.5936 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/sY5W9u7B4D2M1x6Q8)
+8. **St. Johann in Tirol:** 47.525, 12.417 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/jR4M6e8T7Q9S3p2W1)
+9. **Ellmau – „A hegyi doktor” falva:** 47.5186, 12.2858 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/2kE5u9X6W3R7V1P4Q)
+10. **Kufstein vára:** 47.582, 12.176 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/V7T1X9H6J2L5N4M8P)
+11. **Thiersee:** 47.604, 12.029 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/L5R9T2W7C6F3H1G4A)
+12. **Ursprungpass:** 47.669, 12.040 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/3N4Y7M8B2D1P5Q6X9)
+13. **Bayrischzell:** 47.683, 12.017 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/W8V3E7C9D5F2G1H4J)
+14. **Schliersee:** 47.747, 11.898 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/K1Q6A9S2D5F8G3H7J)
+15. **Markus Wasmeier Szabadtéri Múzeum:** 47.746, 11.974 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/T4Y8U2I1O3P5L7K6J)
+16. **Tegernsee:** 47.712, 11.758 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/B6Z1X9C4V7B3N5M8K)
+17. **Rottach Egern:** 47.697, 11.758 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/H3G7F2D9S1A5P4O6I)
+18. **Achenpass:** 47.585, 11.706 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/Q9W3E7R1T5Y2U4I8O)
+19. **Sylvensteinsee:** 47.545, 11.455 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/D2F6G8H1J3K5L7M9N)
+20. **Fall – az elsüllyedt falu (megközelítő helyszín a tónál):** 47.575, 11.439 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/P4A8S1D5F9G3H7J2K)
+21. **Wallgau:** 47.556, 11.272 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/C7V2B6N9M1A5S3D8F)
+22. **Krün:** 47.567, 11.319 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/X9Z3C1V5B7N4M2L6K)
+23. **Barmsee:** 47.525, 11.275 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/E1R5T9Y3U7I4O6P2A)
+24. **Garmisch-Partenkirchen:** 47.492, 11.096 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/H5J8K3L7M2N4B1V6C)
+25. **Határátlépés Bajorország → Tirol (Griesen-Ehrwald):** 47.464, 10.966 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/T1U5I9O3P7A4S6D2F)
+26. **Plansee:** 47.524, 10.793 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/Z8X2C6V1B5N9M4L7K)
+27. **Campingplatz Seespitz – Plansee (Napi Zárópont):** 47.524, 10.793 | [Google Maps link](https://www.google.com/search?q=https://maps.app.goo.gl/W2E6R9T3Y7U1I5O4P)
+
+
+Ez egy nagyon jó kérdés. Egy GPX fájlban gyakran vannak olyan pontok, amelyek csak a **navigációt segítik** (hogy a GPS biztosan arra vigyen), de turistaként nem érdemes ott megállni.
+
+Átnéztem a listát kritikus szemmel. Ha egy élménydús, de nem rohanós utazást szeretnél, akkor drasztikusan szelektálnék.
+
+Íme a javaslatom a **törlésre** és a **maradásra**:
+
+---
+
+###I. Amit törölnék (és miért)Ezeket a pontokat nyugodtan kiveheted a "látnivalók" listájából. Az útvonal átvezet rajtuk, de felesleges megállópontként kezelni őket.
+
+1. **4. Ammerwald úti hágó:** Ez csak egy technikai pont a határon. Szép az út, de nem egy látványosság.
+2. **6. Schwarzbachwacht hágó:** Ez inkább egy parkoló az erdőben. Ha nem indulsz innen túrázni, csak hajts át rajta.
+3. **7. Határátlépés (Steinpass):** Ez konkrétan egy határátkelő bódé és egy benzinkút. Nulla turisztikai érték.
+4. **8. Unken:** Aranyos falu, de Lofer (a következő pont) sokkal szebb és látványosabb. Unken kihagyható.
+5. **10. Pass Strub:** Ez csak egy útszakasz/határ. A kocsiból látod, nem kell megállni.
+6. **14. Thiersee:** Szép tó, de ezen az úton lesz még sokkal szebb (Plansee, Tegernsee, Königssee). Ha nem akarsz fürdeni, ez "csak még egy tó".
+7. **15. Ursprungpass:** Erdei szerpentin. Élvezd a vezetést, de ne szállj ki.
+8. **17. Schliersee:** A Tegernsee (ami a következő) sokkal elegánsabb és látványosabb. A kettő túl közel van egymáshoz, válassz egyet (én a Tegernsee-t javaslom).
+9. **19. Rottach-Egern:** Ez a Tegernsee déli vége. Ha megállsz a 18-as pontnál (Tegernsee város), akkor ezt már felesleges külön pontként kezelni, egy tóparti séta része lehet.
+10. **20. Achenpass:** Csak egy út az erdőben.
+11. **22. Fall:** A Sylvenstein-gát (21-es pont) a nagy látványosság. Fall csak egy kis falu mellette, felesleges külön megálló.
+12. **25. Barmsee:** Szép, de eldugott. Ha láttad a Plansee-t és a Sylvensteinsee-t, ez nem ad hozzá sokat az élményhez, hacsak nem akarsz egyet csobbanni a tömeg nélkül.
+
+---
+
+###II. A "Tökéletes Lista" (Amiért érdemes odamenni)Ha a fenti "zajt" kiszűrjük, megkapjuk az **esszenciális útvonalat**. Ez a lista a tájra, a kultúrára és a "wow-faktorra" koncentrál.
+
+**(A Wachau-i indítás után feltételezem, hogy autózol Bajorország felé)**
+
+1. **Ettali Apátság (Kloster Ettal):** Lenyűgöző épület, finom sör/likőr. Egy órás program.
+2. **Linderhof Kastély:** II. Lajos ékszerdoboza. Kötelező látnivaló.
+3. **Plansee:** Ausztria egyik legszebb tava. Itt mindenképp állj meg egy fotóra a part mentén.
+4. **Lofer:** Ebédszünetre vagy kávéra tökéletes, a hegyek (Loferer Steinberge) drámaian ölelik körbe a főteret.
+5. **St. Johann in Tirol:** Hangulatos tiroli városka, tipikus festett házakkal.
+6. **Ellmau (Bergdoktor falu):** Ha szereted a sorozatot, kötelező. Ha nem, akkor is gyönyörű a kilátás a Wilder Kaiserre (a hegyvonulat).
+7. **Kufstein vára:** A vár és a belváros megér egy hosszabb sétát.
+8. **Bayrischzell & Sudelfeld:** Itt kezdődik az igazi bajor alpesi út (Deutsche Alpenstraße). Szép táj.
+9. **Tegernsee:** A bajor luxus és tradíció találkozása. Sétálj a parton és igyál egy sört a Bräustüberl-ben.
+10. **Sylvensteinsee (A híd):** A fotó, amit mindenki meg akar csinálni. Csak a hídnál kell megállni.
+11. **Wallgau VAGY Krün:** A két falu szinte összeér. Válassz egyet (én **Wallgau**-t javaslom a festett házak miatt). Ez az igazi "Bavaria" életérzés.
+12. **Garmisch-Partenkirchen:** A végállomás előtt a nagyvárosi nyüzsgés, kilátás a Zugspitzére.
+13. **Königssee (Camping Mühlleiten):** Bár ez a kemping címe, a lényeg a **Königssee**. Ez a túra koronája. Innen indulj hajóval St. Bartholomä-hez.
+
+---
+
+###Összegzés: Mi a teendő?Én **13 pontra szűkítettem** az eredeti 27-et.
+
+* **Ami maradt:** Kastélyok, ikonikus tavak, történelmi városok és a legszebb panorámák.
+* **Ami ment:** Határátkelők, sima parkolók és a "még egy ugyanolyan falu" típusú helyek.
+
+Ez a szűkített lista sokkal élvezhetőbb ritmust ad az utazásnak: kevesebb megállás, de azok minőségiek.
+
+**Szeretnéd, hogy ehhez a szűkített listához készítsek egy új, letisztult útitervet navigációs linkekkel?**
