@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY07 6. Ricken hágó</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY07_06_Rickenpass.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY07 6. Ricken hágó</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">6. Ricken hágó</div>
+                <div class="small">47.260364, 9.032927</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY07_06_Rickenpass.jpg" alt="Ricken hágó">
+
+                <div class="p">
+                    <b>Eredeti leírás:</b> Rapperswil után az út felmászik a Ricken hágóra, amely történelmileg fontos átjáró a Linth síksága és a Toggenburg felé. A hágó egyben vízválasztó is a Thur folyó és a Linth között, tehát itt válik el, melyik víz melyik nagy folyórendszerhez csatlakozik. A környéken 19. századi katonai jelentősége is volt, mivel a hágó ellenőrzése kulcs volt a völgyek védelmében. A vidék itt már kevésbé városi, inkább mezőgazdasági, dombos alpesi táj, szétszórt farmokkal és kisebb falvakkal. A Ricken hágóról kelet felé nézve fokozatosan feltűnnek a Toggenburg mögött magasodó hegyvonulatok, így jól érezhető, hogy egy új, markáns hegyi régióba érkeztek. Ez a pont egyfajta átmenet a tóvidék és az alpesi völgyek között.
+                </div>
+
+                <div class="p">
+                    <b>Érdekességek:</b>
+                </div>
+
+                <div class="p">A Ricken hágó egyik legérdekesebb jellemzője a vízválasztó jelleg, mert itt a lefolyás iránya a következő nagy völgyrendszert is meghatározza. Ilyen pontokon a domborzat és a hidrológia kézzelfoghatóan összekapcsolódik.</div><br><br>                <div class="p">A táj dombos, legelős karaktere nagyon svájci átmeneti alpesi hangulatot ad, és a szétszórt farmok jól mutatják a terephez igazodó gazdálkodást. Nem egy látványos magashegyi hágó, de a térérzet váltása erős.</div><br><br>                <div class="p">A kelet felé feltűnő hegyvonulatok már előkészítik a következő völgyek zártabb, fal szerű közelségét.</div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://maps.app.goo.gl/jzbuMiVuu1C99N1v8" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Ricken hágó",
+            lat: 47.260364,
+            lon: 9.032927
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+</body>
+
+</html>

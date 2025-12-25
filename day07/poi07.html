@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY07 7. Thur völgye, Toggenburg</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY07_07_Thur_Toggenburg.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY07 7. Thur völgye, Toggenburg</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">7. Thur völgye, Toggenburg</div>
+                <div class="small">47.284421, 9.091034</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY07_07_Thur_Toggenburg.jpg" alt="Thur völgye, Toggenburg">
+
+                <div class="p">
+                    <b>Eredeti leírás:</b> A Thur folyó völgyében futó Toggenburg Svájc egyik legkarakteresebb alpesi völgye. A völgy fölött a Churfirsten hét markáns, egymás mellé rendezett csúcsa emelkedik, amelyek szinte fogazott hegyfalat alkotnak. A Thur folyó itt még viszonylag fiatal, gyors sodrású hegyi patak jellegű, és a völgy alján több helyen kavicsos zátonyokat és kis hordalékkúpokat épít. Az itt található falvak tipikus fatetős svájci házakkal, széles ereszekkel és faragott erkélyekkel sorakoznak. A völgy kulturálisan is sajátos, erős helyi hagyományokkal, népzenével, jodlizással és vallási ünnepekkel. A motorral itt haladva a hegyek fal-szerű közelsége és a völgy szűkössége ad nagyon jellegzetes térélményt. A Toggenburg így egyfajta bevezetés a későbbi osztrák és tiroli völgyek világába.
+                </div>
+
+                <div class="p">
+                    <b>Érdekességek:</b>
+                </div>
+
+                <div class="p">A Toggenburg térélménye abból adódik, hogy a völgy alja viszonylag rendezett, de a hegyfalak karaktere nagyon határozott. A Churfirsten csúcssor formája sok helyről felismerhető, és igazi táji iránytűként működik.</div><br><br>                <div class="p">A Thur fiatal hegyi folyóként dinamikus hordalékos szakaszokat alakít, a kavicsos partok és zátonyok sok helyen láthatóak. Ez a fajta völgyfenéki forma a hegyvidéki vízjárás és a kőzetanyag közvetlen lenyomata.</div><br><br>                <div class="p">Az épített környezet itt gyakran fából és kőből álló, széles ereszes alpesi házakkal jelenik meg, ami kifejezetten illik a csapadékos hegyi klímához.</div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://maps.app.goo.gl/1EWSQGngxH3oUU4aA" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Thur völgye, Toggenburg",
+            lat: 47.284421,
+            lon: 9.091034
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+</body>
+
+</html>

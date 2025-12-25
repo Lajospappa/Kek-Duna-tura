@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY07 8. Wildhaus hágó</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY07_08_Wildhauspass.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY07 8. Wildhaus hágó</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">8. Wildhaus hágó</div>
+                <div class="small">47.20335633763527, 9.350429885265918</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY07_08_Wildhauspass.jpg" alt="Wildhaus hágó">
+
+                <div class="p">
+                    <b>Eredeti leírás:</b> Wildhaus környéke a Toggenburg legmagasabban fekvő része, a hágó vízválasztót képez a Thur völgye és a Rajna völgye között. Itt született Huldrych Zwingli, a svájci reformáció egyik legfontosabb alakja, ami a településnek külön történelmi jelentőséget ad. A falu és a hágó között a táj egyre nyitottabb, magas alpesi legelőkkel és szétszórt alpesi gazdaságokkal. A két hegység, a Säntis tömbje és a Churfirsten közé szorulva Wildhaus igazi hegyi fennsík benyomását kelti. Télen síterep, nyáron kiránduló és túraközpont, tehát egész évben aktív turisztikai célpont. Ez a pont egyben a svájci szakasz egyik csúcspontja, mielőtt leereszkedtek a nagy Rajna völgy irányába.
+                </div>
+
+                <div class="p">
+                    <b>Érdekességek:</b>
+                </div>
+
+                <div class="p">Wildhausnál a vízválasztó jelleg ismét fontos, mert innen már a Rajna rendszerének iránya kerül előtérbe. A hegyi fennsík térérzete abban különleges, hogy a domborzat hirtelen nyitottabbá válik a zártabb völgyek után.</div><br><br>                <div class="p">A magas alpesi legelők és a szétszórt gazdaságok jól mutatják az alpesi gazdálkodás klasszikus területhasználatát. Ez a táj nyáron és télen is intenzíven használt, de egészen más módon.</div><br><br>                <div class="p">A két hegységtömb közötti fekvés miatt a látóhatáron egyszerre jelenik meg több markáns hegyforma, ami vizuálisan nagyon erős szakaszt ad a napnak.</div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://maps.app.goo.gl/fnr3kdZfPa1rwxcn7" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Wildhaus hágó",
+            lat: 47.20335633763527,
+            lon: 9.350429885265918
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+</body>
+
+</html>

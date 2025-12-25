@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DAY07 3. Hirzel hágó</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Háttérkép ugyanaz, mint a hero image -->
+    <style>
+        body {
+            background: url("images/DAY07_03_Hirzelpass.jpg") center / cover no-repeat fixed;
+        }
+
+        /* térkép – legalul */
+        #map {
+            width: 100%;
+            height: 320px;
+            margin-top: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* ACTION BUTTONS: Főoldal külön sor */
+        .poibtns.poibtns-split {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .poibtns.poibtns-split .poibtns-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="inner">
+                <div class="brand">
+                    <div class="title">Kék Duna túra</div>
+                    <div class="subtitle">DAY07 3. Hirzel hágó</div>
+                </div>
+                <div class="btnrow">
+                    <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    <a class="btn" href="index.html">📋 Lista nézet</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container">
+            <div class="card">
+
+                <div class="h1">3. Hirzel hágó</div>
+                <div class="small">47.213433, 8.598525</div>
+
+                <!-- HERO IMAGE -->
+                <img class="hero-image" src="images/DAY07_03_Hirzelpass.jpg" alt="Hirzel hágó">
+
+                <div class="p">
+                    <b>Eredeti leírás:</b> Zugból kelet felé felkapaszkodtok a Hirzel hágóra, amely a Sihl völgyét és a Zürichi tó térségét köti össze. A vidék dombos, zöld, szelídebb alpesi táj, szétterülő tanyákkal és magányos parasztházakkal. A környék irodalmi szempontból is érdekes, mert Hirzel közelében született Johanna Spyri, a Heidi történetek szerzője, aki ezekből a tájakból merített inspirációt. A dombtetőkről visszanézve jól látni a Zugi tó és a Luzerni tó irányába is, tehát ez egyfajta „gerincvonal”, amely elválasztja a különböző tórendszereket. Geográfiailag ez a rész már átmenetet képez a központi svájci tórégió és a később elérendő keleti hegyvidék között. A hágó magassága mérsékelt, de jól érződik rajta, hogyan emelkedik ki a táj a nagy vízfelületek fölé.
+                </div>
+
+                <div class="p">
+                    <b>Érdekességek:</b>
+                </div>
+
+                <div class="p">A Hirzel hágó nem a magasságával hat, hanem azzal, hogy gerinc jellegű átvezetést ad két vízrendszer és két tájkarakter között. Ilyen szelíd átmeneti hágókon különösen jól érzékelhető, hogyan vált át a tóparti tér a dombos, legelős mezőgazdasági tájba.</div><br><br>                <div class="p">A gerincekről visszanézve több tó iránya is érzékelhető, ezért a hágó egyfajta természetes panoráma tengelyként működik. Ez az a pont, ahol a táj már kevésbé vízfelület központú, és fokozatosan a hegyvidéki völgyek logikája kerül előtérbe.</div><br><br>                <div class="p">A tanyás, szétszórt településszerkezet is jelzi az átmenetet, mert itt a domborzat és a legelők diktálják, hol érdemes építkezni.</div>
+
+                <!-- ACTION BUTTONS -->
+                <div class="poibtns poibtns-split">
+                    <div class="poibtns-row">
+                        <a class="btn btn-blue" href="https://maps.app.goo.gl/8tA8ciJLeRmCGZcb7" target="_blank" rel="noopener">🧭 Navigáció</a>
+                        <a class="btn btn-accent" href="index.html">📋 Lista nézet</a>
+                    </div>
+                    <div class="poibtns-row">
+                        <a class="btn" href="../index.html">🏠 Főoldal</a>
+                    </div>
+                </div>
+
+                <!-- MAP – LEGALUL -->
+                <div id="map"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /* ===== POI ===== */
+        const POI = {
+            name: "Hirzel hágó",
+            lat: 47.213433,
+            lon: 8.598525
+        };
+
+        /* ===== MAP INIT ===== */
+        const map = L.map("map").setView([POI.lat, POI.lon], 14);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "© OpenStreetMap"
+        }).addTo(map);
+
+        /* ===== POI MARKER ===== */
+        L.marker([POI.lat, POI.lon])
+            .addTo(map)
+            .bindPopup(`<b>${POI.name}</b>`);
+
+        /* ===== USER POSITION – PIROS ===== */
+        let userMarker = null;
+
+        const userIconRed = L.icon({
+            iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+            shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                pos => {
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+
+                    if (!userMarker) {
+                        userMarker = L.marker([lat, lon], { icon: userIconRed })
+                            .addTo(map)
+                            .bindPopup("📍 Itt vagy most");
+                    } else {
+                        userMarker.setLatLng([lat, lon]);
+                    }
+                },
+                err => console.log("GPS hiba:", err),
+                { enableHighAccuracy: true }
+            );
+        }
+    </script>
+
+</body>
+
+</html>
