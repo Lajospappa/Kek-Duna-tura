@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DAY06 14. Luzern látogatás (sub program, gyalogos)</title>
+  <title>DAY06 lista nézet</title>
 
   <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -13,166 +13,542 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
-    body {
-      background: url("images/DAY06_13_Weinmarkt.jpg") center / cover no-repeat fixed;
+    body.day06 {
+      background: url("images/DAY06_01_Interlaken__Staubbachfall.jpg") center / cover no-repeat fixed;
     }
 
-    #map {
-      width: 100%;
-      height: 320px;
-      margin-top: 18px;
-      border-radius: 8px;
-      border: 1px solid #333;
+    .card {
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    /* --- SZÁMOZOTT KÉK POI JELÖLŐ --- */
+    .poi-numbered-icon {
+      background: transparent;
+      border: none;
+    }
+
+    .poi-numbered-icon svg {
+      display: block;
+    }
+
+    .poi-pin {
+      width: 25px;
+      height: 41px;
+      background: url("https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png") center / 25px 41px no-repeat;
+      position: relative;
+    }
+
+    .poi-pin-num {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 25px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 12px;
+      line-height: 12px;
+      color: #ff2b2b;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* --- TÉRKÉP FULLSCREEN MODIFIKÁCIÓ --- */
+    .map-fullscreen-mode {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: auto !important;
+      height: auto !important;
+      z-index: 9998 !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+    }
+
+    #closeFullscreenBtn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: none;
+      background: #ff5a5a;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
   </style>
 </head>
 
-<body>
-<div class="page">
+<body class="day06">
+  <div class="page">
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="inner">
-    <div class="brand">
-      <div class="title">Kék Duna túra</div>
-      <div class="subtitle">DAY06 14. Luzern látogatás (sub program, gyalogos)</div>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="inner">
+        <div class="brand">
+          <div class="title">Kék Duna túra</div>
+          <div class="subtitle">DAY06 lista nézet</div>
+        </div>
+        <div class="btnrow">
+          <a class="btn" href="../index.html">🏠 Főoldal</a>
+          <button class="btn btn-accent" id="btnNearest">📌 Legközelebbi pont</button>
+        </div>
+      </div>
     </div>
-    <div class="btnrow">
-      <a class="btn" href="../index.html">🏠 Főoldal</a>
-      <a class="btn" href="index.html">📋 Lista nézet</a>
+
+    <div class="container">
+
+      <div class="card">
+        <div class="h1">DAY06 – Interlaken → Luzern a Grimsel és Furka hágón át</div>
+        <div class="small">
+          A mérés automatikusan indul oldalnyitáskor, majd 5 mp múlva frissít.
+          A távolságok minden célpontnál frissülnek.
+        </div>
+        <div class="notice" id="gpsNotice" style="display:none">
+          A helymeghatározás nem érhető el. Ellenőrizd az engedélyeket.
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="grid" id="poiList">
+
+        <!-- P1 -->
+        <div class="poi" id="p1">
+          <div class="poi-head">
+            <div class="poi-title">1. Interlaken (Start)</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p1"></span><span data-badgetext="p1">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p1">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Az Aare folyó hordalékkúpján kialakult település a Thuni- és a Brienzi-tó tektonikus süllyedékében fekszik. A pleisztocén eljegesedés által vájt U-alakú völgy aljzatát a folyami üledékfeltöltés osztotta két különálló tavi medencére. Történelmileg az 1133-ban alapított Ágoston-rendi kolostor köré szerveződött.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_01_interlaken_start.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/wCMzzfryhwYrvEgo9" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_01_Interlaken__Staubbachfall.jpg">
+        </div>
+
+        <!-- P2 -->
+        <div class="poi" id="p2">
+          <div class="poi-head">
+            <div class="poi-title">2. Staubbachfall</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p2"></span><span data-badgetext="p2">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p2">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 297 méteres esésmagasságú vízesés a Lauterbrunnen-völgy meredek, glaciális erózió által kialakított mészkő sziklafaláról zúdul le. A vízhozam a kora nyári hóolvadás idején éri el maximumát, míg szárazabb időszakokban a levegőben finom permetté oszlik. A geológiai formáció a triász és jura kori tengeri üledékes kőzetek tektonikus megemelkedésének eredménye.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_02_staubbachfall.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/XvVhyHqnbzA3Xn9t8" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_02_Staubbachfall.jpg">
+        </div>
+
+        <!-- P3 -->
+        <div class="poi" id="p3">
+          <div class="poi-head">
+            <div class="poi-title">3. Brienzersee (Brienzi tó)</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p3"></span><span data-badgetext="p3">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p3">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 14 km hosszú, jégkorszaki eredetű alpesi tó maximális mélysége 260 méter. Vízgyűjtő területe a környező gleccserekből származó, finom kőzetliszttel telített olvadékvizeket fogadja be, amely a tó jellegzetes türkizkék színét okozza. A víztest oligotróf, alacsony tápanyagtartalma miatt élővilága korlátozott.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_03_brienzersee_brienzi_to.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/EhwXmuWJYQq6jnm38" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_03_Brienzersee.jpg">
+        </div>
+
+        <!-- P4 -->
+        <div class="poi" id="p4">
+          <div class="poi-head">
+            <div class="poi-title">4. Sherlock Holmes Museum, Meiringen</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p4"></span><span data-badgetext="p4">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p4">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Meiringen település a Haslital régióban fekszik, történelmileg az alpesi hágókhoz vezető kereskedelmi útvonalak csomópontja. A geológiailag aktív zónában található közeli Reichenbach-vízesés a Hasli-Aare folyó meredek lépcsőin alakult ki. A helyszín az irodalomtörténetbe Sir Arthur Conan Doyle 1893-as novellája révén került be, mint történetének végpontja.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_04_sherlock_holmes_museum_meiringen.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/ZxoDtHASnNMSmQjR8" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_04_Meiringen_Sherlock_Holmes_Museum.jpg">
+        </div>
+
+        <!-- P5 -->
+        <div class="poi" id="p5">
+          <div class="poi-head">
+            <div class="poi-title">5. Grimsel hágó, 2164 méter</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p5"></span><span data-badgetext="p5">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p5">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 2164 méter magasságban húzódó hágó az Aar-masszívum kristályos kőzetein, főként grániton és gneiszen halad keresztül. A terület vízválasztó vonalat képez az Északi-tenger és a Földközi-tenger vízgyűjtő medencéi között. A hágó környékén kiterjedt hidroelektrikus tározórendszer üzemel, amely a gleccserolvadék energiáját hasznosítja.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_05_grimsel_hago_2164_meter.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/aVkgYLvXCxHbxwS86" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_05_Grimsel_Hago.jpg">
+        </div>
+
+        <!-- P6 -->
+        <div class="poi" id="p6">
+          <div class="poi-head">
+            <div class="poi-title">6. Furka hágó, 2429 méter</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p6"></span><span data-badgetext="p6">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p6">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 2429 méteres tengerszint feletti magasságban fekvő hágó az Alpok fő gerincén, Uri és Valais kantonok határán helyezkedik el. Keleti oldalán található a Rhône-gleccser, amely az elmúlt 150 évben jelentős glaciális visszahúzódást mutat. Történelmi jelentőségét a 19. századi katonai védelempolitika és a stratégiai alpesi úthálózat kiépítése adja.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_06_furka_hago_2429_meter.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/gtfXEusiN69525GA6" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_06_Furka_Hago.jpg">
+        </div>
+
+        <!-- P7 -->
+        <div class="poi" id="p7">
+          <div class="poi-head">
+            <div class="poi-title">7. Teufelsbrücke (Ördög hídja)</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p7"></span><span data-badgetext="p7">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p7">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A Schöllenen-szoros a Reuss folyó által a gránitba vájt szűk, V-alakú völgy, amely a Gotthard-hágó északi megközelítésének legfőbb topográfiai akadálya volt. Ennek első áthidalása a 13. században történt meg fakonstrukciós, majd kőből épült hidak révén. A helyszín katonai és kereskedelmi szempontból egyaránt kulcsfontosságú átkelőként funkcionált.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_07_teufelsbrucke_ordog_hidja.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/DD8DjpkL2wvQuWFq7" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_07_Teufelsbrucke.jpg">
+        </div>
+
+        <!-- P8 -->
+        <div class="poi" id="p8">
+          <div class="poi-head">
+            <div class="poi-title">8. Wassen – St. Gallus templom</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p8"></span><span data-badgetext="p8">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p8">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Az 1734-ben felszentelt barokk stílusú St. Gallus templom egy kiemelkedő sziklaszirten helyezkedik el a Reuss-völgyben. A helyszín mérnöktörténeti jelentőségét a Gotthard-vasútvonal 1882-es megnyitása adja. A szintkülönbség leküzdésére épített spirális alagútrendszer miatt a vonaton utazók három különböző magasságból figyelhetik meg az épületet.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_08_wassen_st_gallus_templom.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/tUVJwC8U6xaKi6ij6" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_08_Wassen_St_Gallus_Templom.jpg">
+        </div>
+
+        <!-- P9 -->
+        <div class="poi" id="p9">
+          <div class="poi-head">
+            <div class="poi-title">9. Vierwaldstättersee (Lucerni tó)</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p9"></span><span data-badgetext="p9">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p9">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 114 km² kiterjedésű, komplex morfológiájú tó a Reuss-gleccser végmorénái által elgátolt medencében jött létre. A partvonalat meredek, jura és kréta kori mészkőhegyek határolják. A tó a Svájci Konföderáció történelmi magterülete, a partvidéken fekvő négy őskanton szövetsége képezte az államalakulat alapját.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_09_vierwaldstattersee_lucerni_to.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/tsCfaFYSKJiKZPmEA" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_09_Vierwaldstattersee.jpg">
+        </div>
+
+        <!-- P10 -->
+        <div class="poi" id="p10">
+          <div class="poi-head">
+            <div class="poi-title">10. Tellskapelle</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p10"></span><span data-badgetext="p10">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p10">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A kápolna a Vierwaldstättersee keleti partján, a Tellsplatte nevű abráziós sziklateraszon épült. A történelmi feljegyzések szerint az első épületet 1388-ban emelték ezen a helyen, a Tell Vilmos legendakörhöz kapcsolódóan. A jelenlegi, 1879-ben emelt struktúrát történelmi eseményeket ábrázoló freskók díszítik.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_10_tellskapelle_wilhelm_tell_kapolna.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/Hu5DHfjriw3G1E5s5" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_10_Tellskapelle.jpg">
+        </div>
+
+        <!-- P11 -->
+        <div class="poi" id="p11">
+          <div class="poi-head">
+            <div class="poi-title">11. Glockenspiel Tellsplatte</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p11"></span><span data-badgetext="p11">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p11">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A 2001-ben átadott, 37 harangból álló elektromechanikus harangjáték a turisztikai infrastruktúra modern kiegészítése. A szerkezet az alpesi időjárási viszonyoknak ellenálló bronzötvözetből készült harangokat alkalmaz. Akusztikai elhelyezése a tó vizének hangvisszaverő képességét használja ki a fizikai hangzás felerősítésére.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_11_glockenspiel_tellsplatte.html">Részletek</a>
+            <a class="btn btn-blue" href="https://www.google.com/maps/dir/?api=1&destination=46.93216,8.61203" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_11_Glockenspiel.jpg">
+        </div>
+
+        <!-- P12 -->
+        <div class="poi" id="p12">
+          <div class="poi-head">
+            <div class="poi-title">12. Schwyz</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p12"></span><span data-badgetext="p12">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p12">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A Mythen-hegycsoport meredek mészkőszirtjei alatt fekvő település a Svájci Konföderáció egyik alapító kantonjának székhelye. Itt őrzik az 1291-es Szövetségi Levél eredeti pergamenjét, amely a kantonok közötti kölcsönös védelmi paktumot rögzíti. Az óváros építészete a 16-17. századi patríciusházakon keresztül jeleníti meg a korabeli társadalomstruktúrát.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_12_schwyz.html">Részletek</a>
+            <a class="btn btn-blue" href="https://maps.app.goo.gl/DohkxrN9ifHKDXBe6" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_12_Schwyz.jpg">
+        </div>
+
+        <!-- P13 -->
+        <div class="poi" id="p13">
+          <div class="poi-head">
+            <div class="poi-title">13. Camping International Lido Luzern</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p13"></span><span data-badgetext="p13">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p13">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">A kemping a Luzerni-tó pleisztocén üledékes partvonalán elhelyezkedő logisztikai pont. Az infrastruktúra közvetlen hozzáférést biztosít a tó felszíni vízhálózatához és a városi közlekedési tengelyekhez. Geometriailag sík terepviszonyai a folyami hordaléklerakódás és mederfeltöltődés közvetlen eredményei.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_13_camping_international_lido_luzern.html">Részletek</a>
+            <a class="btn btn-blue" href="https://www.google.com/maps/dir/?api=1&destination=47.0501073,8.3389329" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_13_Camping_International.jpg">
+        </div>
+
+        <!-- P14 -->
+        <div class="poi" id="p14">
+          <div class="poi-head">
+            <div class="poi-title">14. Luzern</div>
+            <div class="badges">
+              <span class="badge"><span class="dot warn" data-dot="p14"></span><span data-badgetext="p14">mérés: várakozás</span></span>
+              <span class="badge"><span class="dot warn"></span><span data-dist="p14">távolság: —</span></span>
+            </div>
+          </div>
+          <div class="p">Luzern a Reuss folyó kifolyásánál fekszik, logisztikai csomópontként kötve össze a Svájci-fennsíkot az Alpokkal. A 14. században épült Kapellbrücke és a Spreuerbrücke Európa legrégebbi fedett fahídjai közé tartoznak, eredetileg a város erődrendszerének részeként funkcionáltak. A városfejlődést a Gotthard-útvonal kereskedelmi tranzitja határozta meg.</div>
+          <div class="poibtns">
+            <a class="btn btn-accent" href="day06_14_luzern_latogatas.html">Részletek</a>
+            <a class="btn btn-blue" href="https://www.google.com/maps/dir/?api=1&destination=47.0511111111,8.3072222222" target="_blank">🧭 Navigáció</a>
+          </div>
+          <img class="inline-image" src="images/DAY06_14_Kapellbrücke.jpg">
+        </div>
+
+      </div>
+
+      <div style="height:16px"></div>
+      
+      <!-- TÉRKÉP KÁRTYA TELJES KÉPERNYŐS GOMBbal -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div class="h1" style="margin: 0;">Térkép</div>
+          <button id="btnOpenFullscreen" class="btn btn-blue">Nagyítás ⛶</button>
+        </div>
+        <div id="map" style="width:100%; height:360px; border-radius:12px;"></div>
+      </div>
+      
+      <!-- KILÉPÉS GOMB -->
+      <button id="closeFullscreenBtn" class="btn">✖ Térkép bezárása</button>
+
     </div>
   </div>
-</div>
 
-<!-- CONTENT -->
-<div class="container">
-<div class="card">
+  <script>
+    const POIS = [
+      { id: "p1", lat: 46.684709, lon: 7.853923 },
+      { id: "p2", lat: 46.591057, lon: 7.911357 },
+      { id: "p3", lat: 46.688446, lon: 7.920706 },
+      { id: "p4", lat: 46.72718846381045, lon: 8.187675602941995 },
+      { id: "p5", lat: 46.56116461505012, lon: 8.337023277918556 },
+      { id: "p6", lat: 46.57271, lon: 8.41521 },
+      { id: "p7", lat: 46.647269276163456, lon: 8.590771122443627 },
+      { id: "p8", lat: 46.706558, lon: 8.599614 },
+      { id: "p9", lat: 46.903249, lon: 8.624712 },
+      { id: "p10", lat: 46.932, lon: 8.611 },
+      { id: "p11", lat: 46.93216, lon: 8.61203 },
+      { id: "p12", lat: 47.02109243887614, lon: 8.654109584854064 },
+      { id: "p13", lat: 47.0501073, lon: 8.3389329 },
+      { id: "p14", lat: 47.0511111111, lon: 8.3072222222 }
+    ];
 
-<div class="h1">14. Luzern látogatás (sub program, gyalogos)</div>
-<div class="small">47.052786431137804, 8.308887104765335</div>
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
 
-<img class="hero-image" src="images/DAY06_13_Weinmarkt.jpg" alt="Luzern">
+    function setBadge(id, txt) {
+      const el = document.querySelector(`[data-badgetext="${id}"]`);
+      if (el) el.textContent = txt;
+    }
 
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.052786431137804,8.308887104765335"
-     target="_blank" rel="noopener">🧭 Navigáció – Motor parkoló</a>
-</div>
+    function setDist(id, km) {
+      const el = document.querySelector(`[data-dist="${id}"]`);
+      if (el) el.textContent = `távolság: ${km.toFixed(2)} km`;
+    }
 
-<div class="p">
-<b>Ajánlott sorrend:</b> 1 → 2 → 3 → 4 → 5 → 6 → 7<br><br>
+    function computeDistances(pos) {
+      const out = {};
+      POIS.forEach(p => {
+        out[p.id] = haversineKm(pos.lat, pos.lon, p.lat, p.lon);
+      });
+      return out;
+    }
 
-<b>1. Motor parkoló</b><br>
-Kiindulópont a gyalogos városnézéshez.<br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.052786431137804,8.308887104765335"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div><br>
+    function scrollToPoi(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
 
-<b>2. Kapellbrücke</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://maps.app.goo.gl/sQ9vpMDURnFRUitJ6"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_14_Kapellbrücke.jpg"><br>
+    function getPosOnce() {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          p => resolve({ lat: p.coords.latitude, lon: p.coords.longitude }),
+          e => reject(e),
+          { enableHighAccuracy: true, maximumAge: 0, timeout: 12000 }
+        );
+      });
+    }
 
-<b>3. Jesuitenkirche</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.0506528,8.30515"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_15_Jesuitenkirche.jpg"><br>
+    async function runMeasureCycle(scrollAfter = true) {
+      try {
+        const pos = await getPosOnce();
+        const d = computeDistances(pos);
+        for (const id in d) {
+          setDist(id, d[id]);
+          setBadge(id, "mérve");
+        }
+        if (scrollAfter) {
+          const nearest = Object.keys(d).reduce((a, b) => d[a] < d[b] ? a : b);
+          scrollToPoi(nearest);
+        }
+      } catch (err) {
+        document.getElementById("gpsNotice").style.display = "block";
+      }
+    }
 
-<b>4. Spreuerbrücke</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.05185,8.301673"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_16_Spreuerbrücke.jpg"><br>
+    runMeasureCycle(true);
+    document.getElementById("btnNearest").addEventListener("click", () => runMeasureCycle(true));
 
-<b>5. Weinmarkt</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.051944,8.30475"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_13_Weinmarkt.jpg"><br>
+    let map;
 
-<b>6. Museggmauer</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.054686,8.305611"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_17_museggmauer.jpg"><br>
+    function blueNumberIcon(n) {
+      const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="46" viewBox="0 0 30 46">
+  <path d="M15 0C8 0 2.5 5.5 2.5 12.5C2.5 23 15 46 15 46C15 46 27.5 23 27.5 12.5C27.5 5.5 22 0 15 0Z"
+        fill="#2A81CB" stroke="rgba(0,0,0,0.35)" stroke-width="1"/>
+  <text x="15" y="18" text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial"
+        font-size="13" font-weight="800"
+        fill="#ff2b2b" stroke="#ffffff" stroke-width="2" paint-order="stroke">
+    ${n}
+  </text>
+</svg>`;
 
-<b>7. Löwendenkmal</b><br>
-<div class="poibtns">
-  <a class="btn btn-blue"
-     href="https://www.google.com/maps/dir/?api=1&destination=47.05833,8.31056"
-     target="_blank" rel="noopener">🧭 Navigáció</a>
-</div>
-<img class="hero-image" src="images/DAY06_18_Löwendenkmal.jpg"><br>
+      return L.divIcon({
+        className: "poi-numbered-icon",
+        html: svg,
+        iconSize: [30, 46],
+        iconAnchor: [15, 46],
+        popupAnchor: [0, -38]
+      });
+    }
 
-</div>
+    function getPoiTitle(id) {
+      const el = document.querySelector(`#${id} .poi-title`);
+      return el ? el.textContent.trim() : id;
+    }
 
-<div id="map"></div>
+    function initMap(userPos) {
+      map = L.map("map");
 
-</div>
-</div>
-</div>
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap"
+      }).addTo(map);
 
-<script>
-const STOPS = [
- {num:1,name:"Motor parkoló",lat:47.052786431137804,lon:8.308887104765335},
- {num:2,name:"Kapellbrücke",lat:47.0516489,lon:8.3075351},
- {num:3,name:"Jesuitenkirche",lat:47.0506528,lon:8.30515},
- {num:4,name:"Spreuerbrücke",lat:47.05185,lon:8.301673},
- {num:5,name:"Weinmarkt",lat:47.051944,lon:8.30475},
- {num:6,name:"Museggmauer",lat:47.054686,lon:8.305611},
- {num:7,name:"Löwendenkmal",lat:47.05833,lon:8.31056}
-];
+      const bounds = [];
 
-const map = L.map("map").setView([47.0528,8.3089],14);
+      POIS.forEach(p => {
+        const num = parseInt(String(p.id).replace("p", ""), 10);
+        const safeNum = Number.isFinite(num) ? num : "";
+        const title = getPoiTitle(p.id);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  attribution: "© OpenStreetMap"
-}).addTo(map);
+        L.marker([p.lat, p.lon], { icon: blueNumberIcon(safeNum) })
+          .addTo(map)
+          .bindPopup(title);
 
-STOPS.forEach(s => {
-  L.marker([s.lat, s.lon])
-    .addTo(map)
-    .bindPopup(`<b>${s.num}. ${s.name}</b>`);
-});
+        bounds.push([p.lat, p.lon]);
+      });
 
-map.fitBounds(STOPS.map(s => [s.lat, s.lon]));
+      if (userPos) {
+        const redIcon = L.icon({
+          iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+          shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41]
+        });
 
-/* ====== SAJÁT HELYZET – PIROS, KLASSZIKUS MARKER ====== */
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(pos => {
-    const lat = pos.coords.latitude;
-    const lon = pos.coords.longitude;
+        L.marker([userPos.lat, userPos.lon], { icon: redIcon })
+          .addTo(map)
+          .bindPopup("📍 Itt vagyok");
 
-    const redIcon = new L.Icon({
-      iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
-      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
+        bounds.push([userPos.lat, userPos.lon]);
+      }
 
-    L.marker([lat, lon], { icon: redIcon })
-      .addTo(map)
-      .bindPopup("📍 Itt vagyok");
-  });
-}
-</script>
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [30, 30] });
+      }
+    }
+
+    getPosOnce()
+      .then(pos => initMap(pos))
+      .catch(() => initMap(null));
+
+    // --- TÉRKÉP FULLSCREEN LOGIKA ---
+    const mapEl = document.getElementById('map');
+    const openBtn = document.getElementById('btnOpenFullscreen');
+    const closeBtn = document.getElementById('closeFullscreenBtn');
+
+    function toggleFullscreen() {
+      mapEl.classList.toggle('map-fullscreen-mode');
+      if (mapEl.classList.contains('map-fullscreen-mode')) {
+        closeBtn.style.display = 'block';
+      } else {
+        closeBtn.style.display = 'none';
+      }
+      setTimeout(() => { map.invalidateSize(); }, 200);
+    }
+
+    openBtn.addEventListener('click', toggleFullscreen);
+    closeBtn.addEventListener('click', toggleFullscreen);
+  </script>
 
 </body>
 </html>
